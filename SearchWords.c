@@ -1,16 +1,19 @@
 // Essa função recebe um vetor de caracteres com alocação dinâmica e faz uma
-// busca por palavras de tamanho maior que 3.
+// busca por palavras
 
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
+// Em C não é possível declarar uma função que retorne diretamente um array
+// arrays em C são tratados como ponteiros
 char *vetorCaracteres() {
   char *frase = NULL;
   int tamanho = 0;
   char letra;
 
+  // alocamos memória para receber o caracter
   frase = (char *)realloc(frase, (tamanho + 1) * sizeof(char));
 
   if (frase == NULL) {
@@ -18,6 +21,7 @@ char *vetorCaracteres() {
     exit(1);
   }
 
+  // enquanto o enter não for pressionado continuaremos a capiturar letras
   while ((letra = getchar()) != '\n') {
     frase = (char *)realloc(frase, (tamanho + 1) * sizeof(char));
 
@@ -40,6 +44,7 @@ char *vetorCaracteres() {
 
 int pesquisar(char *frase, char *palavra) {
 
+  // strstr( ) faz a pesquisa da palavra no vetor
   char *resultado = strstr(frase, palavra);
   if (resultado == NULL) {
     printf("\nPalavra nao encontrada.");
