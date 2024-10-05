@@ -1,7 +1,16 @@
+// Fiz essa função usando um grafo fixo que representa a constelação leão.
+// Por motivos óbivios fica um pouco desfuncional fazer o desenho dessa
+// constelação, então recomendo dar um google e olhar umas imagens.
+
 #include <stdio.h>
 #include <stdlib.h>
 #define LINHAS 10
 
+// maequei a oposição das estrelas na matriz
+// não é bem a posição, basicamente eu numerei as estrelas 
+// e marquei as ligações. Então, se a estrela 1 se liga com a 
+// estrela 0 para formar a constelação, então na matriz leao[1][0]=1.
+// Poderia ser o contrário também...
 void estrelas(int **leao) {
   leao[1][0] = 1;
   leao[2][1] = 1;
@@ -15,6 +24,11 @@ void estrelas(int **leao) {
   leao[9][8] = 1;
 }
 
+// Não tem muito o que dizer quanto ao código...
+// Maaaaass
+// grafo euleriano -> todos os vértices tem grau par
+// grafo semieuleriano -> exatamente dois vértices tem grau ímpar
+// grafo comum -> mais de dois vértices tem grau ímpar
 int propriedade(int grauVertices[], int linhas) {
   int impar = 0;
 
@@ -39,6 +53,7 @@ int propriedade(int grauVertices[], int linhas) {
   return 0;
 }
 
+// somamos o número de vezes que um grau aparece
 void grau(int **leao, int linhas) {
   int grauVertices[LINHAS] = {0};
 
@@ -59,6 +74,8 @@ void grau(int **leao, int linhas) {
   propriedade(grauVertices, linhas);
 }
 
+// embora eu tivesse o número fixo das linhas e colunas achei
+// por bem usar a alocação de memória dinâmica
 int main(void) {
 
   int **leao;
