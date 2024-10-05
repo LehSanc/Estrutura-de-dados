@@ -7,6 +7,7 @@ void imprimirVetor(int *vetor, int tamanho) {
   for (int i = 0; i < tamanho - 1; i++) {
     printf("\n[%d]: %d", i, vetor[i]);
   }
+  free(vetor);
 }
 
 void bubbleSort(int *vetor, int tamanho) {
